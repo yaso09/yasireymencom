@@ -1,3 +1,9 @@
-# Yasir Eymen
+---
+layout: default
+title: Ana Sayfa
+---
 
-Selamun aleyküm, ben Yasir.
+<link rel="stylesheet" href="/assets/css/style.css">
+
+# Merhaba
+Bu, özel SCSS dosyamın uygulandığı bir sayfadır.
