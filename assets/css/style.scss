@@ -1,7 +1,9 @@
-a#forkme_banner {
-  display: none;
-}
+---
+# Boş YAML bloğu (zorunlu)
+---
 
+@import "jekyll-theme-merlot"; // varsa tema CSS'ini içe al
+a#forkme_banner,
 footer {
   display: none;
 }
