@@ -1,0 +1,180 @@
+<!--
+  "Çok Yakında" - tek sayfalık responsive HTML
+  - Görüntülenen Arapça metin: ﻳﺎﺳﺮ
+  - Yazı tipi: 'Alshohadaa' (kendi .ttf dosyanızı /alshohadaa.ttf olarak koyun veya src URL'yi değiştirin)
+  - İçinden SVG ve PNG indirme butonları mevcut (yüksek çözünürlük için scale seçeneği)
+  - Kullanım: dosyayı kaydedin (ör. index.html), kök dizine "alshohadaa.ttf" dosyasını yerleştirin veya @font-face src'ini kendi URL'nizle güncelleyin.
+-->
+
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Çok Yakında — يﺎﺳﺮ</title>
+  <style>
+    /* Replace URL below with the real path to your Alshohadaa font file */
+    @font-face {
+      font-family: 'Alshohadaa';
+      src: url('/alshohadaa.ttf') format('truetype'); /* değiştirildi */
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg1: #0f172a;
+      --bg2: #0b2545;
+      --accent: #f59e0b;
+      --muted: rgba(255,255,255,0.12);
+    }
+
+    html,body{height:100%;margin:0;font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#fff}
+
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:3rem 1.25rem;box-sizing:border-box;text-align:center}
+
+    .card{backdrop-filter: blur(6px);background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));border-radius:16px;padding:2rem;max-width:1100px;width:100%;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+    .arabic-hero{display:flex;align-items:center;justify-content:center;padding:1rem 0}
+    .arabic-hero svg{width:100%;height:auto;max-height:55vh}
+    .arabic-text{font-family:'Alshohadaa', 'Noto Naskh Arabic', 'Scheherazade', serif; font-weight:700;}
+
+    .meta{display:flex;gap:1rem;align-items:center;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+    .btn{background:transparent;border:1px solid var(--muted);padding:0.6rem 1rem;border-radius:10px;color:inherit;text-decoration:none;cursor:pointer;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb86b);color:#081225;border:0}
+
+    .small{font-size:0.9rem;opacity:0.9}
+
+    .controls{display:flex;gap:.5rem;align-items:center;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+    .controls input[type=range]{width:160px}
+    .controls label{display:flex;gap:.4rem;align-items:center;font-size:.9rem}
+
+    @media (max-width:600px){
+      .card{padding:1rem;border-radius:12px}
+      .controls input[type=range]{width:120px}
+    }
+
+    footer{margin-top:1.25rem;color:rgba(255,255,255,0.66);font-size:0.86rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="arabic-hero">
+        <svg id="heroSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="titleDesc">
+          <title id="titleDesc">Çok yakında — يﺎﺳﺮ</title>
+          <rect width="100%" height="100%" fill="none"></rect>
+
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.02"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0.0"/>
+            </linearGradient>
+            <filter id="soft">
+              <feGaussianBlur stdDeviation="8" />
+            </filter>
+          </defs>
+
+          <g transform="translate(600,160)">
+            <text id="arabicText" class="arabic-text" x="0" y="0" text-anchor="middle" dominant-baseline="middle" style="font-size:200px;fill:url(#g1);stroke:rgba(0,0,0,0.35);stroke-width:6;paint-order:stroke;">
+              ﻳﺎﺳﺮ
+            </text>
+          </g>
+
+          <text x="600" y="270" text-anchor="middle" fill="rgba(255,255,255,0.9)" style="font-size:24px;font-weight:600;font-family:Inter,system-ui">ÇOK YAKINDA</text>
+        </svg>
+      </div>
+
+      <div class="meta small">
+        <div>Özel yazıtipi: <strong>Alshohadaa</strong> (/alshohadaa.ttf)</div>
+      </div>
+
+      <div class="controls" aria-hidden="false">
+        <label>Boyut <input id="sizeRange" type="range" min="120" max="380" value="200"></label>
+        <label>Çözünürlük ölçeği <input id="scaleRange" type="range" min="1" max="4" value="2"></label>
+        <button class="btn" id="downloadSvg">SVG İndir</button>
+        <button class="btn primary" id="downloadPng">PNG İndir</button>
+      </div>
+
+      <footer>Sayfayı kaydet: <code>index.html</code>. Yazıtipini <code>/alshohadaa.ttf</code> olarak ekleyin veya @font-face src bağlantısını güncelleyin.</footer>
+    </div>
+  </div>
+
+  <script>
+    const arabicText = document.getElementById('arabicText');
+    const heroSvg = document.getElementById('heroSvg');
+    const sizeRange = document.getElementById('sizeRange');
+    const scaleRange = document.getElementById('scaleRange');
+    const downloadSvgBtn = document.getElementById('downloadSvg');
+    const downloadPngBtn = document.getElementById('downloadPng');
+
+    sizeRange.addEventListener('input', e => {
+      const size = +e.target.value;
+      arabicText.setAttribute('style', `font-size:${size}px;fill:url(#g1);stroke:rgba(0,0,0,0.35);stroke-width:${Math.max(3, Math.round(size/35))};paint-order:stroke;`);
+    });
+
+    function downloadSVG(filename){
+      const clone = heroSvg.cloneNode(true);
+      const svgData = new XMLSerializer().serializeToString(clone);
+      const blob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'yasir-alshohadaa.svg';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 5000);
+    }
+
+    downloadSvgBtn.addEventListener('click', ()=> downloadSVG('yasir-alshohadaa.svg'));
+
+    async function downloadPNG(filename){
+      const scale = parseInt(scaleRange.value,10) || 2;
+      const clone = heroSvg.cloneNode(true);
+      const bbox = heroSvg.getBBox();
+      const svgWidth = Math.round(bbox.width || 1200);
+      const svgHeight = Math.round(bbox.height || 320);
+
+      clone.setAttribute('width', svgWidth);
+      clone.setAttribute('height', svgHeight);
+
+      const svgData = new XMLSerializer().serializeToString(clone);
+      const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(svgBlob);
+
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function(){
+        const canvas = document.createElement('canvas');
+        canvas.width = svgWidth * scale;
+        canvas.height = svgHeight * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(scale,0,0,scale,0,0);
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(function(blob){
+          const link = document.createElement('a');
+          link.download = filename || 'yasir-alshohadaa.png';
+          link.href = URL.createObjectURL(blob);
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          setTimeout(()=>URL.revokeObjectURL(link.href),5000);
+        }, 'image/png');
+        URL.revokeObjectURL(url);
+      };
+      img.onerror = function(e){
+        alert('Görüntü oluşturulamadı. Tarayıcı güvenlik kısıtlamaları veya font yükleme problemi olabilir. Eğer font lokal ise dosyayı sunucuda barındırıp tekrar deneyin.');
+        URL.revokeObjectURL(url);
+      }
+      img.src = url;
+    }
+
+    downloadPngBtn.addEventListener('click', ()=> downloadPNG('yasir-alshohadaa.png'));
+
+    [downloadSvgBtn, downloadPngBtn].forEach(btn => btn.addEventListener('keyup', e => { if(e.key==='Enter') btn.click(); }));
+
+    sizeRange.dispatchEvent(new Event('input'));
+  </script>
+</body>
+</html>
