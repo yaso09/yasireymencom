@@ -1,126 +1,154 @@
-<!doctype html>
-<html lang="tr">  
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-  <meta charset="utf-8" />  
-  <meta name="viewport" content="width=device-width,initial-scale=1" />  
-  <title>Çok Yakında — ﻳﺎﺳﺮ</title>  
-  <meta name="description" content="Yasir'in kişisel web sitesi çok yakında açılıyor." />  
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />  
-  <style>  
-    @font-face {  
-      font-family: 'Alshohadaa';  
-      src: url('/alshohadaa.ttf') format('truetype');  
-      font-weight: 700;  
-      font-style: normal;  
-      font-display: swap;  
-    }  
-    @font-face {  
-      font-family: 'StackSansNotch';  
-      src: url('/StackSansNotch-Bold.ttf') format('truetype');  
-      font-weight: 700;  
-      font-style: normal;  
-      font-display: swap;  
-    }  
+<meta charset="UTF-8">
+<title>Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * { box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      color: #000;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
-    }
+<style>
+:root {
+  --bg: #0e0e11;
+  --paper: #18181d;
+  --text: #e8e8ea;
+  --muted: #a0a0aa;
+  --accent: #f5c451;
+  --border: #2a2a32;
+}
 
-    .content {
-      text-align: center;
-      max-width: 800px;
-      padding: 20px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'StackSansNotch', sans-serif;
-    }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0b0b0e, #111118);
+  font-family: "Charter", "Georgia", serif;
+  color: var(--text);
+}
 
-    [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6, .arabic-text {
-      font-family: 'Alshohadaa', 'Noto Naskh Arabic', serif;
-    }
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 90px auto;
+  padding: 0 24px;
+}
 
-    .arabic-text {
-      font-size: 160px;
-      font-weight: 700;
-      margin: 0;
-    }
+/* Header */
+.header {
+  margin-bottom: 70px;
+}
 
-    .coming-soon {
-      margin-top: 10px;
-    }
+.header h1 {
+  font-size: 3.4rem;
+  margin-bottom: 0.3em;
+  letter-spacing: -0.02em;
+}
 
-    .description {
-      font-size: 16px;
-      font-weight: 400;
-      margin-top: 20px;
-      line-height: 1.6;
-    }
+.header p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
 
-    .instagram-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #000;
-      border: 1px solid #000;
-      padding: 10px;
-      border-radius: 999px;
-      transition: all 0.2s ease;
-    }
+/* Blog list */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
 
-    .instagram-link:hover {
-      background: #000;
-      color: #fff;
-    }
+/* Blog card */
+.blog {
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
 
-    .instagram-icon {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-    }
+.blog h2 {
+  font-size: 2rem;
+  margin-bottom: 0.4em;
+}
 
-    @media (max-width: 600px) {
-      .arabic-text { font-size: 90px; }
-      .coming-soon { font-size: 18px; }
-      .description { font-size: 14px; }
-      .instagram-link { padding: 8px; }
-      .instagram-icon { width: 20px; height: 20px; }
-    }
+.blog a {
+  color: var(--text);
+  text-decoration: none;
+}
 
-  </style>  
-</head>  
-<body>  
-  <div class="content">  
-    <h1 class="arabic-text">ﻳﺎﺳﺮ</h1>  
-    <h1 class="coming-soon">ÇOK YAKINDA</h1>  
-    <div class="description">  
-      Bu sayfa bir âmânın müsveddelerinden müteşekkil yazıları; mağrur muktesebâtını sunmak isteyen mütekebbir bir feylesof ve mütefekkirin günlüğüdür. Allah'ın izniyle yakında yayına girecektir.  
-    </div>  
-    <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: center;">
-      <a class="instagram-link" href="https://www.instagram.com/yekayabasi?igsh=MWJxMXQ0ZGttMmkxbA==" target="_blank" rel="noopener noreferrer">  
-        <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">  
-          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0-11.5zm0 1.5a4.25 4.25 0 1 0 0 8.5a4.25 4.25 0 0 0 0-8.5zm5.5-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5z"/>  
-        </svg>  
-      </a>  
-      <a class="instagram-link" href="/arşiv" target="_blank">  
-        Arşiv  
-      </a>
-      <a class="instagram-link" href="https://blog.yasireymen.com" target="_blank">  
-        Blog  
-      </a>
-      <a class="instagram-link" href="https://kuran.yasireymen.com" target="blank">
-        القرآن (Kur'an)
-      </a>
-    </div>
-  </div>
-</body>  
+.blog a:hover {
+  color: var(--accent);
+}
+
+.blog .meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1em;
+}
+
+.blog p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  text-align: justify;
+  text-indent: 2em;
+  color: var(--text);
+}
+
+/* Footer */
+.footer {
+  margin-top: 100px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <h1>Yasir Eymen</h1>
+    <p>Düşünce, kültür ve makine üzerine denemeler.</p>
+  </header>
+
+  <section class="blog-list" id="blogs">
+    Yükleniyor…
+  </section>
+
+  <footer class="footer">
+    © 2025 — Yasir Eymen
+  </footer>
+
+</div>
+
+<script>
+fetch("/blogs.json")
+  .then(res => res.json())
+  .then(blogs => {
+    const container = document.getElementById("blogs");
+    container.innerHTML = "";
+
+    blogs.forEach(blog => {
+      const el = document.createElement("article");
+      el.className = "blog";
+
+      el.innerHTML = `
+        <h2>
+          <a href="/blog/${blog.id}">
+            ${blog.title}
+          </a>
+        </h2>
+        <div class="meta">${blog.date}</div>
+        <p>${blog.description}</p>
+      `;
+
+      container.appendChild(el);
+    });
+  })
+  .catch(() => {
+    document.getElementById("blogs").innerHTML =
+      "<p>Bloglar yüklenemedi.</p>";
+  });
+</script>
+
+</body>
 </html>
