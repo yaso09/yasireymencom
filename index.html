@@ -2,152 +2,145 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasir Eymen</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #0e0e11;
-  --paper: #18181d;
-  --text: #e8e8ea;
-  --muted: #a0a0aa;
-  --accent: #f5c451;
-  --border: #2a2a32;
+  --bg:#0c0c0c;
+  --card:#1f1f33;
+  --text:#fff;
+  --accent1:#00fff7;
+  --accent2:#ff00ff;
+  --muted:#888;
+  --scroll-bg:#111;
+  --scroll-thumb:#00fff7;
 }
 
-* {
-  box-sizing: border-box;
+/* --- Global --- */
+*{box-sizing:border-box;margin:0;font-family:'Orbitron',sans-serif;}
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  background: linear-gradient(135deg,#0c0c0c,#1b1b2f);
+  color:var(--text);
+  overflow-x:hidden;
+  padding:20px;
 }
 
-body {
-  margin: 0;
-  background: linear-gradient(180deg, #0b0b0e, #111118);
-  font-family: "Charter", "Georgia", serif;
-  color: var(--text);
+/* --- Scrollbar --- */
+body::-webkit-scrollbar {width:10px;}
+body::-webkit-scrollbar-track {background:var(--scroll-bg);}
+body::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius:10px;
+  box-shadow:0 0 10px var(--accent1);
+}
+body::-webkit-scrollbar-thumb:hover {background:#00ffe0;}
+
+/* --- Particles Container --- */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
+
+/* --- Header --- */
+header{text-align:center;margin-bottom:50px;perspective:1000px;position:relative;}
+
+header h1{
+  font-size:64px;
+  letter-spacing:5px;
+  color:var(--accent1);
+  text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1),0 0 30px var(--accent2);
+  animation:neonPulse 1.8s ease-in-out infinite alternate, floatText 3s ease-in-out infinite alternate, colorShift 5s linear infinite;
 }
 
-/* Layout */
-.container {
-  max-width: 900px;
-  margin: 90px auto;
-  padding: 0 24px;
+@keyframes neonPulse{
+  0%{text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1);}
+  50%{text-shadow:0 0 15px var(--accent1),0 0 25px var(--accent2),0 0 40px var(--accent1);}
+  100%{text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1);}
 }
+@keyframes floatText{0%{transform:rotateX(0deg) rotateY(0deg);}50%{transform:rotateX(6deg) rotateY(-6deg);}100%{transform:rotateX(0deg) rotateY(0deg);}}
+@keyframes colorShift{0%{color:#00fff7;}25%{color:#ff00ff;}50%{color:#ff4d6d;}75%{color:#00ff99;}100%{color:#00fff7;}}
 
-/* Header */
-.header {
-  margin-bottom: 70px;
-}
+header p{color:var(--muted);font-size:16px;margin-top:12px;letter-spacing:1px;}
 
-.header h1 {
-  font-size: 3.4rem;
-  margin-bottom: 0.3em;
-  letter-spacing: -0.02em;
-}
+/* --- Container --- */
+#container{width:100%;max-width:560px;position:relative;z-index:1;}
 
-.header p {
-  color: var(--muted);
-  font-size: 1.1rem;
-}
+/* --- Link Cards --- */
+.link{position:relative;display:flex;align-items:center;gap:16px;padding:22px 24px;margin-bottom:18px;border-radius:18px;background:var(--card);border:1px solid rgba(255,255,255,0.05);text-decoration:none;color:var(--text);transition:0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;overflow:hidden;}
+.link::before{content:"";position:absolute;left:-50%;top:-50%;width:200%;height:200%;background:radial-gradient(circle,var(--accent1),transparent 60%);opacity:0;transition:0.5s;}
+.link:hover::before{opacity:0.3;transform:rotate(45deg);}
+.link:hover{box-shadow:0 6px 45px rgba(0,255,255,0.35);transform:translateY(-5px) scale(1.05);filter:brightness(1.2);}
 
-/* Blog list */
-.blog-list {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-/* Blog card */
-.blog {
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border);
-}
-
-.blog h2 {
-  font-size: 2rem;
-  margin-bottom: 0.4em;
-}
-
-.blog a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.blog a:hover {
-  color: var(--accent);
-}
-
-.blog .meta {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-bottom: 1em;
-}
-
-.blog p {
-  font-size: 1.05rem;
-  line-height: 1.9;
-  text-align: justify;
-  text-indent: 2em;
-  color: var(--text);
-}
-
-/* Footer */
-.footer {
-  margin-top: 100px;
-  padding-top: 30px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
+.icon{font-size:32px;width:50px;text-align:center;}
+.link-title{font-weight:700;font-size:20px;}
+.link-desc{font-size:14px;color:var(--muted);margin-top:2px;}
 </style>
 </head>
 <body>
 
-<div class="container">
+<div id="particles"></div>
 
-  <header class="header">
+<div id="container">
+  <header>
     <h1>Yasir Eymen</h1>
-    <p>Düşünce, kültür ve makine üzerine denemeler.</p>
   </header>
 
-  <section class="blog-list" id="blogs">
-    Yükleniyor…
-  </section>
-
-  <footer class="footer">
-    © 2025 — Yasir Eymen
-  </footer>
-
+  <div id="links"></div>
 </div>
 
 <script>
-fetch("/blogs.json")
-  .then(res => res.json())
-  .then(blogs => {
-    const container = document.getElementById("blogs");
-    container.innerHTML = "";
+/* === JSON DATA === */
+const linksData = {
+  "links":[
+    {"title":"GitHub","description":"Projelerim","url":"https://github.com/yaso09/","icon":"💻"},
+    {"title":"Instagram","description":"Sosyal medya","url":"https://www.instagram.com/yekayabasi/","icon":"📸"},
+    {"title":"Salatalık Dogra!","description":"Oyunum","url":"https://cucumberclicker.yasireymen.com/","icon":"🥒"}
+  ]
+};
 
-    blogs.forEach(blog => {
-      const el = document.createElement("article");
-      el.className = "blog";
+const linksContainer=document.getElementById("links");
+linksData.links.forEach(link=>{
+  const a=document.createElement("a");
+  a.className="link";
+  a.href=link.url;
+  a.target="_blank";
+  a.innerHTML=`
+    <div class="icon">${link.icon||"🔗"}</div>
+    <div>
+      <div class="link-title">${link.title}</div>
+      <div class="link-desc">${link.description||""}</div>
+    </div>
+  `;
+  linksContainer.appendChild(a);
+});
 
-      el.innerHTML = `
-        <h2>
-          <a href="/blog/${blog.id}">
-            ${blog.title}
-          </a>
-        </h2>
-        <div class="meta">${blog.date}</div>
-        <p>${blog.description}</p>
-      `;
+/* === Neon Particles === */
+const canvas=document.createElement('canvas');
+document.getElementById('particles').appendChild(canvas);
+const ctx=canvas.getContext('2d');
+let w,h,particles=[];
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+window.addEventListener('resize',resize);resize();
 
-      container.appendChild(el);
-    });
-  })
-  .catch(() => {
-    document.getElementById("blogs").innerHTML =
-      "<p>Bloglar yüklenemedi.</p>";
-  });
+class Particle{
+  constructor(){
+    this.x=Math.random()*w;
+    this.y=Math.random()*h;
+    this.r=Math.random()*2+1;
+    this.dx=(Math.random()-0.5)*0.5;
+    this.dy=(Math.random()-0.5)*0.5;
+    this.color=`hsl(${Math.random()*360},100%,50%)`;
+  }
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();}
+  update(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>w)this.dx*=-1;if(this.y<0||this.y>h)this.dy*=-1;this.draw();}
+}
+
+for(let i=0;i<150;i++)particles.push(new Particle());
+function animate(){ctx.clearRect(0,0,w,h);particles.forEach(p=>p.update());requestAnimationFrame(animate);}
+animate();
 </script>
 
 </body>
