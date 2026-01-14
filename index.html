@@ -4,144 +4,339 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yasir Eymen</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  --bg:#0c0c0c;
-  --card:#1f1f33;
-  --text:#fff;
-  --accent1:#00fff7;
-  --accent2:#ff00ff;
-  --muted:#888;
-  --scroll-bg:#111;
-  --scroll-thumb:#00fff7;
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --border: rgba(255, 255, 255, 0.06);
 }
 
-/* --- Global --- */
-*{box-sizing:border-box;margin:0;font-family:'Orbitron',sans-serif;}
-body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  background: linear-gradient(135deg,#0c0c0c,#1b1b2f);
-  color:var(--text);
-  overflow-x:hidden;
-  padding:20px;
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- Scrollbar --- */
-body::-webkit-scrollbar {width:10px;}
-body::-webkit-scrollbar-track {background:var(--scroll-bg);}
-body::-webkit-scrollbar-thumb {
-  background: var(--scroll-thumb);
-  border-radius:10px;
-  box-shadow:0 0 10px var(--accent1);
-}
-body::-webkit-scrollbar-thumb:hover {background:#00ffe0;}
-
-/* --- Particles Container --- */
-#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
-
-/* --- Header --- */
-header{text-align:center;margin-bottom:50px;perspective:1000px;position:relative;}
-
-header h1{
-  font-size:64px;
-  letter-spacing:5px;
-  color:var(--accent1);
-  text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1),0 0 30px var(--accent2);
-  animation:neonPulse 1.8s ease-in-out infinite alternate, floatText 3s ease-in-out infinite alternate, colorShift 5s linear infinite;
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
 }
 
-@keyframes neonPulse{
-  0%{text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1);}
-  50%{text-shadow:0 0 15px var(--accent1),0 0 25px var(--accent2),0 0 40px var(--accent1);}
-  100%{text-shadow:0 0 5px var(--accent1),0 0 10px var(--accent2),0 0 20px var(--accent1);}
+/* Header */
+.header {
+  margin-bottom: 80px;
+  animation: fadeIn 0.8s ease;
 }
-@keyframes floatText{0%{transform:rotateX(0deg) rotateY(0deg);}50%{transform:rotateX(6deg) rotateY(-6deg);}100%{transform:rotateX(0deg) rotateY(0deg);}}
-@keyframes colorShift{0%{color:#00fff7;}25%{color:#ff00ff;}50%{color:#ff4d6d;}75%{color:#00ff99;}100%{color:#00fff7;}}
 
-header p{color:var(--muted);font-size:16px;margin-top:12px;letter-spacing:1px;}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-/* --- Container --- */
-#container{width:100%;max-width:560px;position:relative;z-index:1;}
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-/* --- Link Cards --- */
-.link{position:relative;display:flex;align-items:center;gap:16px;padding:22px 24px;margin-bottom:18px;border-radius:18px;background:var(--card);border:1px solid rgba(255,255,255,0.05);text-decoration:none;color:var(--text);transition:0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;overflow:hidden;}
-.link::before{content:"";position:absolute;left:-50%;top:-50%;width:200%;height:200%;background:radial-gradient(circle,var(--accent1),transparent 60%);opacity:0;transition:0.5s;}
-.link:hover::before{opacity:0.3;transform:rotate(45deg);}
-.link:hover{box-shadow:0 6px 45px rgba(0,255,255,0.35);transform:translateY(-5px) scale(1.05);filter:brightness(1.2);}
+.avatar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.3);
+}
 
-.icon{font-size:32px;width:50px;text-align:center;}
-.link-title{font-weight:700;font-size:20px;}
-.link-desc{font-size:14px;color:var(--muted);margin-top:2px;}
+.name {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.bio {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* Links */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.8s ease 0.2s both;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.link:hover::before {
+  transform: scaleY(1);
+}
+
+.link:hover {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateX(4px);
+}
+
+.link:active {
+  transform: translateX(2px) scale(0.99);
+}
+
+.icon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.link:hover .icon {
+  transform: scale(1.1);
+}
+
+.link-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.link-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+}
+
+.link-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.arrow {
+  font-size: 20px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.link:hover .arrow {
+  opacity: 1;
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+/* Footer */
+.footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Decorative gradient */
+.gradient-blur {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.gradient-1 {
+  top: -200px;
+  right: -200px;
+  background: radial-gradient(circle, #3b82f6, transparent);
+}
+
+.gradient-2 {
+  bottom: -200px;
+  left: -200px;
+  background: radial-gradient(circle, #8b5cf6, transparent);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 80px 20px 60px;
+  }
+
+  .header {
+    margin-bottom: 60px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+
+  .name {
+    font-size: 36px;
+  }
+
+  .bio {
+    font-size: 16px;
+  }
+
+  .link {
+    padding: 20px 24px;
+  }
+
+  .link-title {
+    font-size: 17px;
+  }
+
+  .icon {
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--text-primary);
+}
 </style>
 </head>
 <body>
 
-<div id="particles"></div>
+<div class="gradient-blur gradient-1"></div>
+<div class="gradient-blur gradient-2"></div>
 
-<div id="container">
-  <header>
-    <h1>Yasir Eymen</h1>
+<div class="container">
+  <header class="header">
+    <div class="avatar">🚀</div>
+    <h1 class="name">Yasir Eymen</h1>
+    <p class="bio">Developer ve yaratıcı. Projeler geliştiriyorum ve yeni şeyler deniyorum.</p>
   </header>
 
-  <div id="links"></div>
+  <div class="links">
+    <a href="https://github.com/yaso09/" target="_blank" class="link">
+      <div class="icon">💻</div>
+      <div class="link-content">
+        <div class="link-title">GitHub</div>
+        <div class="link-desc">Projelerim ve kodlarım</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="https://www.instagram.com/yekayabasi/" target="_blank" class="link">
+      <div class="icon">📸</div>
+      <div class="link-content">
+        <div class="link-title">Instagram</div>
+        <div class="link-desc">Günlük paylaşımlar</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="https://cucumberclicker.yasireymen.com/" target="_blank" class="link">
+      <div class="icon">🥒</div>
+      <div class="link-content">
+        <div class="link-title">Salatalık Doğra!</div>
+        <div class="link-desc">Eğlenceli oyunum</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="https://handcontrol.yasireymen.com/" target="_blank" class="link">
+      <div class="icon">👋</div>
+      <div class="link-content">
+        <div class="link-title">Hand Control</div>
+        <div class="link-desc">Elinle bilgisayarını kontrol et!</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-text">© 2026 Yasir Eymen</p>
+  </footer>
 </div>
-
-<script>
-/* === JSON DATA === */
-const linksData = {
-  "links":[
-    {"title":"GitHub","description":"Projelerim","url":"https://github.com/yaso09/","icon":"💻"},
-    {"title":"Instagram","description":"Sosyal medya","url":"https://www.instagram.com/yekayabasi/","icon":"📸"},
-    {"title":"Salatalık Dogra!","description":"Oyunum","url":"https://cucumberclicker.yasireymen.com/","icon":"🥒"}
-  ]
-};
-
-const linksContainer=document.getElementById("links");
-linksData.links.forEach(link=>{
-  const a=document.createElement("a");
-  a.className="link";
-  a.href=link.url;
-  a.target="_blank";
-  a.innerHTML=`
-    <div class="icon">${link.icon||"🔗"}</div>
-    <div>
-      <div class="link-title">${link.title}</div>
-      <div class="link-desc">${link.description||""}</div>
-    </div>
-  `;
-  linksContainer.appendChild(a);
-});
-
-/* === Neon Particles === */
-const canvas=document.createElement('canvas');
-document.getElementById('particles').appendChild(canvas);
-const ctx=canvas.getContext('2d');
-let w,h,particles=[];
-function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
-window.addEventListener('resize',resize);resize();
-
-class Particle{
-  constructor(){
-    this.x=Math.random()*w;
-    this.y=Math.random()*h;
-    this.r=Math.random()*2+1;
-    this.dx=(Math.random()-0.5)*0.5;
-    this.dy=(Math.random()-0.5)*0.5;
-    this.color=`hsl(${Math.random()*360},100%,50%)`;
-  }
-  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();}
-  update(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>w)this.dx*=-1;if(this.y<0||this.y>h)this.dy*=-1;this.draw();}
-}
-
-for(let i=0;i<150;i++)particles.push(new Particle());
-function animate(){ctx.clearRect(0,0,w,h);particles.forEach(p=>p.update());requestAnimationFrame(animate);}
-animate();
-</script>
 
 </body>
 </html>
